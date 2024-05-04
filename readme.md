@@ -15,16 +15,17 @@ download and install rabbitmq
 
 run
 ```
-brew service start rabbitmq```
+brew service start rabbitmq
+```
 
 ## 3. Run App  
-configure ENV in index.php and dispatch.php
+configure ENV in index.php and dispatch.php  
 ```
 cd /path/to/app/directory/
-composer install```
+composer install
+```
 
-run dispatch.php as rabbitmq consumer
-
+run dispatch.php as rabbitmq consumer  
 start new terminal
 ```
 php dispatch.php
