@@ -7,6 +7,7 @@ run zipkin
 ```
     cd /path/to/downloaded/zipkin.jar/
     java -jar zipkin-server-3.0.0-rc0-exec.jar
+```
 
     open new browser tab and goto http://localhost:9411
 
@@ -25,7 +26,7 @@ run zipkin
 ```
     cd /path/to/app/directory/
     composer install
-
+```
 
 run dispatch.php as rabbitmq consumer
 
@@ -33,7 +34,7 @@ start new terminal
 
 ```
     php dispatch.php
-
+```
 
 4. Evaluate
 
