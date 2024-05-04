@@ -1,7 +1,8 @@
 # Step
 1. Run Zipkin server
-    download zipkin-server
-    run zipkin
+
+download zipkin-server
+run zipkin
 ```
     cd /path/to/downloaded/zipkin.jar/
     java -jar zipkin-server-3.0.0-rc0-exec.jar
