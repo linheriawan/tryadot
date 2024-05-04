@@ -5,36 +5,32 @@ download zipkin-server
 
 run zipkin
 ```
-    cd /path/to/downloaded/zipkin.jar/
-    java -jar zipkin-server-3.0.0-rc0-exec.jar
-```
+cd /path/to/downloaded/zipkin.jar/
+java -jar zipkin-server-3.0.0-rc0-exec.jar
 
-    open new browser tab and goto http://localhost:9411
+open new browser tab and goto http://localhost:9411
 
 2. Run RabbitMQ-server
 
-    download and install rabbitmq
+download and install rabbitmq
 
-    run
-
+run
 ```
-    brew service start rabbitmq
+brew service start rabbitmq
+
 
 3. Run App
 
-    configure ENV in index.php and dispatch.php
+configure ENV in index.php and dispatch.php
 ```
-    cd /path/to/app/directory/
-    composer install
-```
+cd /path/to/app/directory/
+composer install
 
 run dispatch.php as rabbitmq consumer
 
 start new terminal
-
 ```
-    php dispatch.php
-```
+php dispatch.php
 
 4. Evaluate
 
