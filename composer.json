@@ -1,0 +1,17 @@
+{
+    "require": {
+        "open-telemetry/contrib-aws": "^0.0.17",
+        "open-telemetry/api": "^0.0.17",
+        "open-telemetry/sdk": "^0.0.17",
+        "open-telemetry/exporter-otlp": "^0.0.17",
+        "open-telemetry/exporter-zipkin": "^0.0.17"
+    },
+    "config": {
+        "platform": {
+            "php": "8.0"
+        },
+        "allow-plugins": {
+            "php-http/discovery": false
+        }
+    }
+}
