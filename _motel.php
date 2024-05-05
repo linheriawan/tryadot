@@ -1,5 +1,5 @@
 <?php
-putenv("EXPORTER=zipkin");
+putenv("EXPORTER=adot");
 define("EXPORTER",getenv("EXPORTER"));
 
 use OpenTelemetry\Contrib\Otlp\SpanExporter;
@@ -17,7 +17,14 @@ use OpenTelemetry\SDK\Trace\TracerProvider;
 use OpenTelemetry\SDK\Trace\SpanProcessor\SimpleSpanProcessor;
 use OpenTelemetry\API\Trace\Propagation\TraceContextPropagator;
 use OpenTelemetry\API\Trace\SpanKind;
-    
+
+use OpenTelemetry\API\Common\Signal\Signals;
+use OpenTelemetry\Contrib\Otlp\OtlpUtil;
+use OpenTelemetry\Contrib\Grpc\GrpcTransportFactory;
+                
+use OpenTelemetry\Aws\Xray\IdGenerator;
+use OpenTelemetry\Aws\Xray\Propagator;
+
 use OpenTelemetry\SDK\Common\Attribute\Attributes;
 use OpenTelemetry\SDK\Common\Export\Stream\StreamTransportFactory;
 
@@ -35,8 +42,7 @@ class Motel{
     public static function create($NS,$name,$env='development',$version='0.0.0'){
         return new self($NS, $name, $env, $version);
     }
-    public function __construct($NS,$name,$env='development',$version='0.0.0'){
-        
+    public function __construct($NS,$name,$env='development',$version='0.0.0'){   
         $this->resource = ResourceInfoFactory::emptyResource()->merge(ResourceInfo::create(Attributes::create([
             ResourceAttributes::SERVICE_NAMESPACE => $NS,
             ResourceAttributes::SERVICE_NAME => $name,
@@ -59,7 +65,7 @@ class Motel{
         switch(EXPORTER){
             case "adot":
                 $transport = (new GrpcTransportFactory())
-                    ->create('http://127.0.0.1:4317' . OtlpUtil::method(Signals::TRACE));
+                    ->create('http://172.20.226.47:4317' . OtlpUtil::method(Signals::TRACE));
                 $exporter = new SpanExporter($transport);
             break;
             case "zipkin":
@@ -77,7 +83,7 @@ class Motel{
                 $detector = new OpenTelemetry\Aws\Ec2\Detector(new GuzzleHttp\Client(), new GuzzleHttp\Psr7\HttpFactory());
                 $tracerProvider = new TracerProvider($spanProcessor, null, $detector->getResource(), null, $idGenerator);
                 $propagator = new Propagator();
-                $awssdkinstr = new OpenTelemetry\Aws\AwsSdkInstrumentationAwsSdkInstrumentation();
+                $awssdkinstr = new OpenTelemetry\Aws\AwsSdkInstrumentation();
                 $awssdkinstr->setPropagator($propagator);
                 $awssdkinstr->setTracerProvider($tracerProvider);
             break;

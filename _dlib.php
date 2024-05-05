@@ -103,6 +103,7 @@ class Fett{
     function __construct($url){
         $this->URL=$url;
         $this->HEADER=[
+            "User-Agent"=>"Fett/1.0",
             "Cache-Control"=>"no-cache",
             "Content-Type"=>"application/json",
             "Accept"=>"application/json",
@@ -318,14 +319,14 @@ class Rest{
       ob_end_flush(); //die();
   }
 }
-loadLib::from(__DIR__."/PhpAmqpLib")->as('PhpAmqpLib');
+// loadLib::from(__DIR__."/PhpAmqpLib")->as('PhpAmqpLib');
 // define('AMQP_DEBUG', true);
-use PhpAmqpLib\Connection\AMQPStreamConnection;
+use PhpAmqpLib\Connection\AMQPSSLConnection;
 use PhpAmqpLib\Message\AMQPMessage;
 class Rabbit_subs{
     private $connection, $channel, $EXNAME, $MODE,$ROUTING_KEY;
     function __construct($host, $port, $user, $pass){
-        $this->connection = new AMQPStreamConnection($host, $port, $user, $pass, '/');
+        $this->connection = new AMQPSSLConnection($host, $port, $user, $pass, '/', ['verify_peer' => false]);
         $this->channel = $this->connection->channel();
         $this->MODE='basic';
     }
@@ -381,7 +382,7 @@ class Rabbit_pubs{
     private $connection, $channel, $exchange, $mode, $routekey;
 
     function __construct($host, $port, $user, $pass){
-        $this->connection = new AMQPStreamConnection($host, $port, $user, $pass,'/');
+        $this->connection = new AMQPSSLConnection($host, $port, $user, $pass,'/', ['verify_peer' => false]);
         $this->channel = $this->connection->channel();
         $this->mode='direct';
     }
