@@ -3,10 +3,11 @@ putenv("RABBIT_HOST=localhost");
 putenv("RABBIT_PORT=5672");
 putenv("RABBIT_USER=guest");
 putenv("RABBIT_PASS=guest");
+
 putenv("RABBIT_EXC=hellow");
 putenv("RABBIT_KEYS=callsecond master_data.*");
-$BASE_URL="https://localhost/diceadot/index.php";
 
+$BASE_URL="https://localhost/tryadot/index.php";
 require_once __DIR__."/_dlib.php";
 require('_motel.php');
 $W=new Console();

@@ -319,7 +319,7 @@ class Rest{
       ob_end_flush(); //die();
   }
 }
-// loadLib::from(__DIR__."/PhpAmqpLib")->as('PhpAmqpLib');
+
 // define('AMQP_DEBUG', true);
 use PhpAmqpLib\Connection\AMQPSSLConnection;
 use PhpAmqpLib\Message\AMQPMessage;

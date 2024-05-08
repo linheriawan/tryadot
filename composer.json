@@ -4,8 +4,8 @@
         "open-telemetry/api": "^0.0.17",
         "open-telemetry/sdk": "^0.0.17",
         "open-telemetry/exporter-otlp": "^0.0.17",
-        "open-telemetry/exporter-zipkin": "^0.0.17",
         "open-telemetry/transport-grpc": "^0.0.17",
+        "open-telemetry/exporter-zipkin": "^0.0.17",
         "php-amqplib/php-amqplib": "^3.6"
     },
     "config": {

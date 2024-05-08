@@ -1,6 +1,6 @@
 <?php
 putenv("RABBIT_HOST=localhost");
-putenv("RABBIT_PORT=5672");
+putenv("RABBIT_PORT=5671");
 putenv("RABBIT_USER=guest");
 putenv("RABBIT_PASS=guest");
 
